@@ -1,39 +1,29 @@
 import { Breadcrumb, Button, Drawer } from "antd";
 import React, { useState } from "react";
-import { IconCoppy, IconCopySaved } from "../../shared/assets/images";
-import { BottomSheet } from "react-spring-bottom-sheet";
 import "react-spring-bottom-sheet/dist/style.css";
+import { IconCoppy, IconCopySaved } from "../../shared/assets/images";
 
-import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import { RightOutlined } from "@ant-design/icons";
 
-import "./AutoPhrase.scss";
 import { Link, useNavigate } from "react-router-dom";
+import "./AutoPhrase.scss";
 
-const arr = [
-  {
-    text: "",
-    link: "/",
-  },
-  {
-    text: "Create New Wallet",
-    link: "",
-  },
-];
-
-const data = [];
-for (let i = 1; i <= 24; i++) {
-  data.push({
-    key: i,
-    name: "Word",
-  });
-}
-
-const AutoPhrase = () => {
+const AutoPhrase = (props) => {
+  const { data } = props;
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const showDrawer = () => {
-    setOpen(true);
-  };
+
+  const breadcrumbArr = [
+    {
+      text: "",
+      link: "/",
+    },
+    {
+      text: "Create New Wallet",
+      link: "",
+    },
+  ];
+
   const onClose = () => {
     setOpen(false);
   };
@@ -41,10 +31,11 @@ const AutoPhrase = () => {
   const handleNext = () => {
     navigate("/confirm");
   };
+
   return (
     <>
       <Breadcrumb separator="<" className="breadcrumb">
-        {arr.map((bred, index) => (
+        {breadcrumbArr.map((bred, index) => (
           <Breadcrumb.Item key={index}>
             <Link to={bred.link}>{bred.text}</Link>
           </Breadcrumb.Item>
@@ -53,10 +44,10 @@ const AutoPhrase = () => {
       <div className="main">
         <h2 className="main__title">Auto Gen Seed Phrase?</h2>
         <div className="tag">
-          {data.map((e, index) => (
+          {data.map((item, index) => (
             <div className="tag__item" key={index}>
-              <span>{e.key}</span>
-              <p>{e.name}</p>
+              <span>{index + 1}</span>
+              <p>{item.name}</p>
             </div>
           ))}
         </div>

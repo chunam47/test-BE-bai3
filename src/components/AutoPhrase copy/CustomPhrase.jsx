@@ -1,13 +1,12 @@
 import { Breadcrumb, Button, Drawer } from "antd";
 import React, { useState } from "react";
-import { IconCoppy, IconCopySaved } from "../../shared/assets/images";
-import { BottomSheet } from "react-spring-bottom-sheet";
 import "react-spring-bottom-sheet/dist/style.css";
+import { IconCoppy, IconCopySaved } from "../../shared/assets/images";
 
-import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import { RightOutlined } from "@ant-design/icons";
 
+import { Link } from "react-router-dom";
 import "./CustomPhrase.scss";
-import { Link, useNavigate } from "react-router-dom";
 
 const arr = [
   {
@@ -30,17 +29,11 @@ for (let i = 1; i <= 24; i++) {
 
 const CustomPhrase = () => {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const showDrawer = () => {
-    setOpen(true);
-  };
+
   const onClose = () => {
     setOpen(false);
   };
 
-  const handleCustom = () => {
-    navigate("/custom");
-  };
   return (
     <>
       <Breadcrumb separator="<" className="breadcrumb">
