@@ -1,0 +1,110 @@
+.main {
+  padding: 16px 20px 36px 20px;
+  background-color: #f9fbff;
+
+  &__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+    color: #004dff;
+  }
+}
+.breadcrumb {
+  background: #ffffff;
+  box-shadow: 0px 1px 1px rgba(208, 201, 214, 0.5);
+  padding: 10px 22px;
+
+  .ant-breadcrumb-link {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+    color: #04004d !important;
+  }
+
+  .ant-breadcrumb-separator {
+    margin: 0;
+    margin-right: 12.5px;
+    color: #04004d;
+  }
+}
+
+.ant-drawer-content-wrapper {
+  width: 375px;
+  margin: 0 auto;
+
+  .ant-drawer-content {
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .content-drawer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &__title {
+        margin: 0;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 30px;
+        text-align: center;
+        color: #04004d;
+        margin-top: 24px;
+      }
+    }
+    .ant-drawer-header {
+      border: none;
+      padding: 15px 0 0 0;
+
+      .ant-drawer-header-title {
+        justify-content: center;
+
+        .ant-drawer-close {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.submit {
+  background-color: #fff;
+  padding: 36px 20px;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    h5 {
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 23px;
+      color: #04004d;
+      margin: 0;
+    }
+
+    svg {
+      font-size: 10px;
+    }
+  }
+
+  &--blue {
+    background: #004dff;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding: 19.5px 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}

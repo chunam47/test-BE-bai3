@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "Clear Sans";
+  font-weight: normal;
+  font-display: swap;
+  src: local("ClearSans Regular"), local("ClearSans-Regular"),
+    url("../src/shared/assets/font/ClearSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Clear Sans";
+  font-weight: 600;
+  font-display: swap;
+  src: local("ClearSans Semi Bold"), local("ClearSans-Semi-Bold"),
+    url("../src/shared/assets/font/ClearSans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Clear Sans";
+  font-weight: bold;
+  font-display: swap;
+  src: local("ClearSans Bold"), local("ClearSans-Bold"),
+    url("../src/shared/assets/font/ClearSans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Clear Sans";
+  font-weight: 500;
+  font-display: swap;
+  src: local("ClearSans Medium"), local("ClearSans-Medium"),
+    url("../src/shared/assets/font/ClearSans-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Clear Sans";
+  font-weight: 300;
+  font-display: swap;
+  src: local("ClearSans Light"), local("ClearSans-Light"),
+    url("../src/shared/assets/font/ClearSans-Light.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  font-family: "Clear Sans" !important;
+  width: 100% !important;
+}
