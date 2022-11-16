@@ -1,57 +1,64 @@
 import { Breadcrumb, Button, Drawer } from "antd";
 import React, { useState } from "react";
 import "react-spring-bottom-sheet/dist/style.css";
-import { IconCoppy, IconCopySaved } from "../../shared/assets/images";
+import {
+  IconCoppy,
+  IconCopySaved,
+  IconDown,
+  IconPath,
+} from "../../shared/assets/images";
 
 import { RightOutlined } from "@ant-design/icons";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./CustomPhrase.scss";
 
-const arr = [
-  {
-    text: "",
-    link: "/",
-  },
-  {
-    text: "Create New Wallet",
-    link: "",
-  },
-];
-
-const data = [];
-for (let i = 1; i <= 24; i++) {
-  data.push({
-    key: i,
-    name: "Word",
-  });
-}
-
-const CustomPhrase = () => {
+const CustomPhrase = (props) => {
+  const { data } = props;
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const breadcrumbArr = [
+    {
+      text: <img src={IconPath} alt="path" />,
+      link: "/",
+    },
+    {
+      text: "Create New Wallet",
+      link: "",
+    },
+  ];
 
   const onClose = () => {
     setOpen(false);
   };
 
+  const handleNext = () => {
+    navigate("/confirm");
+  };
+
+  const handleBack = () => {
+    navigate("/");
+  };
+
   return (
     <>
-      <Breadcrumb separator="<" className="breadcrumb">
-        {arr.map((bred, index) => (
+      <Breadcrumb separator="" className="breadcrumb">
+        {breadcrumbArr.map((bred, index) => (
           <Breadcrumb.Item key={index}>
             <Link to={bred.link}>{bred.text}</Link>
           </Breadcrumb.Item>
         ))}
       </Breadcrumb>
       <div className="main">
-        <Link to="/custom" className="main__title">
-          Auto Gen Seed Phrase?
+        <Link to="/" className="main__title">
+          Custom Seed Phrase?
         </Link>
         <div className="tag">
-          {data.map((e, index) => (
+          {data.map((item, index) => (
             <div className="tag__item" key={index}>
-              <span>{e.key}</span>
-              <p>{e.name}</p>
+              <span>{index + 1}</span>
+              <p>{item.name}</p>
             </div>
           ))}
         </div>
@@ -61,7 +68,13 @@ const CustomPhrase = () => {
             a safe place
           </p>
           <img src={IconCoppy} alt="" onClick={() => setOpen(true)} />
-          <Drawer placement="bottom" onClose={onClose} open={open} height={281}>
+          <Drawer
+            placement="bottom"
+            onClose={onClose}
+            open={open}
+            height={281}
+            closeIcon={<img src={IconDown} alt="down" />}
+          >
             <div className="content-drawer">
               <img src={IconCopySaved} alt="coppy" />
               <p className="content-drawer__title">Saved to clipboard</p>
@@ -76,9 +89,14 @@ const CustomPhrase = () => {
           <h5>How does this work?</h5>
           <RightOutlined />
         </div>
-        <Button type="primary" className="submit--blue">
-          next
-        </Button>
+        <div className="button-custom-pharese">
+          <Button className="submit--disable" onClick={handleBack}>
+            Back
+          </Button>
+          <Button type="primary" className="submit--blue" onClick={handleNext}>
+            next
+          </Button>
+        </div>
       </div>
     </>
   );

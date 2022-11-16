@@ -1,7 +1,12 @@
 import { Breadcrumb, Button, Drawer } from "antd";
 import React, { useState } from "react";
 import "react-spring-bottom-sheet/dist/style.css";
-import { IconCoppy, IconCopySaved } from "../../shared/assets/images";
+import {
+  IconCoppy,
+  IconCopySaved,
+  IconDown,
+  IconPath,
+} from "../../shared/assets/images";
 
 import { RightOutlined } from "@ant-design/icons";
 
@@ -15,7 +20,7 @@ const AutoPhrase = (props) => {
 
   const breadcrumbArr = [
     {
-      text: "",
+      text: <img src={IconPath} alt="path" />,
       link: "/",
     },
     {
@@ -34,7 +39,7 @@ const AutoPhrase = (props) => {
 
   return (
     <>
-      <Breadcrumb separator="<" className="breadcrumb">
+      <Breadcrumb separator="" className="breadcrumb">
         {breadcrumbArr.map((bred, index) => (
           <Breadcrumb.Item key={index}>
             <Link to={bred.link}>{bred.text}</Link>
@@ -42,7 +47,9 @@ const AutoPhrase = (props) => {
         ))}
       </Breadcrumb>
       <div className="main">
-        <h2 className="main__title">Auto Gen Seed Phrase?</h2>
+        <Link to="/custom" className="main__title">
+          Auto Gen Seed Phrase?
+        </Link>
         <div className="tag">
           {data.map((item, index) => (
             <div className="tag__item" key={index}>
@@ -57,7 +64,13 @@ const AutoPhrase = (props) => {
             a safe place
           </p>
           <img src={IconCoppy} alt="" onClick={() => setOpen(true)} />
-          <Drawer placement="bottom" onClose={onClose} open={open} height={281}>
+          <Drawer
+            placement="bottom"
+            onClose={onClose}
+            open={open}
+            height={281}
+            closeIcon={<img src={IconDown} alt="down" />}
+          >
             <div className="content-drawer">
               <img src={IconCopySaved} alt="coppy" />
               <p className="content-drawer__title">Saved to clipboard</p>

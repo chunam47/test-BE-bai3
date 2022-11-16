@@ -11,7 +11,7 @@ p {
   margin: 16px 0 26px 0;
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 16px;
+  gap: 16px 8px;
   &__item {
     display: flex;
     align-items: center;
@@ -52,6 +52,12 @@ p {
   background-color: #fff;
   padding: 36px 20px;
 
+  .button-custom-pharese {
+    display: grid;
+    grid-template-columns: 30% auto;
+    column-gap: 12px;
+  }
+
   &__title {
     display: flex;
     justify-content: space-between;
@@ -83,5 +89,20 @@ p {
     width: 100%;
     height: 100%;
     border: none;
+  }
+
+  &--disable {
+    background: #fff;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #d3d7db;
+    padding: 19.5px 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #edeef0;
   }
 }

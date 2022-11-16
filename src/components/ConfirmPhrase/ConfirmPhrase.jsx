@@ -1,22 +1,28 @@
 import { Breadcrumb, Button, Checkbox, Drawer, Form } from "antd";
-import Link from "antd/lib/typography/Link";
 import React, { useState } from "react";
 import "react-spring-bottom-sheet/dist/style.css";
-import { IconTick } from "../../shared/assets/images";
+import {
+  IconDown,
+  IconErr,
+  IconPath,
+  IconTick,
+} from "../../shared/assets/images";
 
-import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import { RightOutlined } from "@ant-design/icons";
 
 import CheckableTag from "antd/lib/tag/CheckableTag";
+import { Link } from "react-router-dom";
 import "./ConfirmPhrase.scss";
 
 const ConfirmPhrase = (props) => {
   const { data } = props;
   const [form] = Form.useForm();
   const [open, setOpen] = useState(false);
+  const [openErr, setOpenErr] = useState(false);
 
-  const arr = [
+  const breadcrumbArr = [
     {
-      text: "",
+      text: <img src={IconPath} alt="path" />,
       link: "/",
     },
     {
@@ -61,10 +67,19 @@ const ConfirmPhrase = (props) => {
     console.log(values);
   };
 
+  const hanleSubmit = () => {
+    if (selectedTags.length === 6) {
+      setOpenErr(false);
+      setOpen(true);
+    } else {
+      setOpenErr(true);
+    }
+  };
+
   return (
     <>
-      <Breadcrumb separator="<" className="breadcrumb">
-        {arr.map((bred, index) => (
+      <Breadcrumb separator="" className="breadcrumb">
+        {breadcrumbArr.map((bred, index) => (
           <Breadcrumb.Item key={index}>
             <Link to={bred.link}>{bred.text}</Link>
           </Breadcrumb.Item>
@@ -73,25 +88,34 @@ const ConfirmPhrase = (props) => {
       <div className="main">
         <div className="header">
           <h2 className="main__title">Confirm Your Seed Phrase</h2>
-          <span>2/6</span>
+          <span>{selectedTags.length}/6</span>
         </div>
 
         <div className="main__content">
           {data.map((item, index) => (
             <div className="card-tag" key={index}>
               <p>{item.primary}</p>
-              {item.list.map((tag, index) => (
-                <CheckableTag
-                  key={index}
-                  checked={selectedTags.indexOf(tag) > -1}
-                  onChange={(checked) => handleChange(tag, checked)}
-                >
-                  {tag}
-                </CheckableTag>
-              ))}
+              <div className="tag-item">
+                {item.list.map((tag, index) => (
+                  <CheckableTag
+                    name="username"
+                    key={index}
+                    checked={selectedTags.indexOf(tag) > -1}
+                    onChange={(checked) => handleChange(tag, checked)}
+                  >
+                    {tag}
+                  </CheckableTag>
+                ))}
+              </div>
             </div>
           ))}
         </div>
+        {openErr ? (
+          <div className="err">
+            <img src={IconErr} alt="err" />
+            <p>Wrong seed phrases. Please try again!</p>
+          </div>
+        ) : null}
       </div>
 
       <div className="submit">
@@ -99,11 +123,7 @@ const ConfirmPhrase = (props) => {
           <h5>How does this work?</h5>
           <RightOutlined />
         </div>
-        <Button
-          type="primary"
-          className="submit--blue"
-          onClick={() => setOpen(true)}
-        >
+        <Button type="primary" className="submit--blue" onClick={hanleSubmit}>
           Submit
         </Button>
         <Drawer
@@ -112,9 +132,7 @@ const ConfirmPhrase = (props) => {
           open={open}
           height="auto"
           closable
-          closeIcon={
-            <DownOutlined style={{ fontSize: "16px", color: "red" }} />
-          }
+          closeIcon={<img src={IconDown} alt="down" />}
         >
           <div className="content-drawer">
             <img src={IconTick} alt="coppy" />
